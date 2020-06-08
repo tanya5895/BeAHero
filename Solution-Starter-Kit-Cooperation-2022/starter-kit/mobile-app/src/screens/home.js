@@ -13,13 +13,13 @@ const styles = StyleSheet.create({
     paddingTop: 75,
   },
   image: {
-    height: '100%',
-    width: '100%',
+    height: '80%',
+    width: '80%',
     resizeMode: 'contain',
     paddingLeft: '100%',
   },
   title: {
-    fontFamily: 'IBMPlexSans-Medium',
+    fontFamily: 'IBMPlexSans-Light',
     fontSize: 36,
     color: '#323232',
     paddingBottom: 15,
@@ -27,11 +27,9 @@ const styles = StyleSheet.create({
   subtitle: {
     fontFamily: 'IBMPlexSans-Light',
     fontSize: 24,
-    color: '#323232',
-    textDecorationColor: '#D0E2FF',
-    textDecorationLine: 'underline',
+    color: '#ffffff',
     paddingBottom: 5,
-    paddingTop: 100,
+    paddingTop: 5,
     textAlign: 'center',
   },
   content: {
@@ -43,12 +41,12 @@ const styles = StyleSheet.create({
   },
   buttonGroup: {
     flex: 1,
-    paddingTop: 15,
+    paddingTop: 5,
     width: '100%',
-    alignItems: 'center',
+    paddingLeft: '25%',
   },
   button: {
-    backgroundColor: '#1062FE',
+    backgroundColor: '#4caf50',
     color: '#FFFFFF',
     fontFamily: 'IBMPlexSans-Medium',
     fontSize: 16,
@@ -56,6 +54,7 @@ const styles = StyleSheet.create({
     padding: 12,
     textAlign: 'center',
     marginTop: 15,
+    borderRadius: 10,
   },
 });
 
@@ -65,33 +64,26 @@ import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 
 class Home extends Component {
   state = {};
-  pressHanlder(navigationProp) {
-    console.log('here', navigationProp.navigate('donate'));
-  }
   render() {
     return (
       <View style={styles.center}>
         <ScrollView style={styles.scroll}>
-          <Image
-            style={styles.image}
-            source={require('../images/2020-cfc-512.png')}
-          />
           <View style={styles.buttonGroup}>
             <Text style={styles.title}>BE A HERO</Text>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('donate')}
               style={styles.button}>
-              <Text>donate</Text>
+              <Text style={styles.subtitle}>Give service</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('takeDonation')}
               style={styles.button}>
-              <Text>Take donation</Text>
+              <Text style={styles.subtitle}>Take service</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('volunteer')}
               style={styles.button}>
-              <Text>volunteer</Text>
+              <Text style={styles.subtitle}>volunteer</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
