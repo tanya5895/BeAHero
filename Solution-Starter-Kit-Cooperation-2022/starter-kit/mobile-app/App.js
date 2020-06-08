@@ -1,122 +1,95 @@
-import 'react-native-gesture-handler';
-import * as React from 'react';
+// import React, {Component} from 'react';
+// import {
+//   Text,
+//   StyleSheet,
+//   View,
+//   Button,
+//   TouchableOpacity,
+//   Alert,
+// } from 'react-native';
+// import {NavigationContainer} from '@react-navigation/native';
+// import {createStackNavigator} from '@react-navigation/stack';
+// import Home from './src/screens/home';
+// import Donate from './src/screens/Donate';
+// import TakeDonation from './src/screens/takeDonation';
+// import Volunteer from './src/screens/volunteer';
+// const styles = StyleSheet.create({
+//   button: {
+//     backgroundColor: '#1062FE',
+//     color: '#FFFFFF',
+//     fontFamily: 'IBMPlexSans-Medium',
+//     fontSize: 15,
+//     overflow: 'hidden',
+//     padding: 10,
+//     marginTop: 10,
+//     // marginRight: 100,
+//     // marginLeft: 50,
+//   },
+//   buttonGroup: {
+//     marginTop: 350,
+//     marginLeft: '10%',
+//     width: '80%',
+//     alignItems: 'center',
+//   },
+// });
+// const naviagationScreens = {
+//   donate: false,
+//   'Take donation': false,
+//   volunteer: false,
+// };
+// class App extends Component {
+//   state = {};
+//   OnClickEventHandler(params) {
+//     console.log('my', naviagationScreens[params]);
+//   }
+//   render() {
+//     return (
+//       <View style={styles.buttonGroup}>
+//         <TouchableOpacity onPress={() => this.OnClickEventHandler('donate')}>
+//           <Text style={styles.button}>Donate for the quarentined</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity onPress={() => this.OnClickEventHandler()}>
+//           <Text style={styles.button}>Take donations</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity onPress={() => this.OnClickEventHandler()}>
+//           <Text style={styles.button}>Volunteer</Text>
+//         </TouchableOpacity>
+//       </View>
+//       //   <NavigationContainer>
+//       //     <Stack.Navigator>
+//       //       <Stack.Screen name="Home" component={Home} />
+//       //       <Stack.Screen name="about" component={Donate} />
+//       //     </Stack.Navigator>
+//       //   </NavigationContainer>
+//     );
+//   }
+// }
 
-import { Button } from 'react-native';
+// export default App;
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import LoadingScreen from './src/screens/loading';
+import React, {Component} from 'react';
+// import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from 'react-navigation-stack';
+import Donate from './src/screens/Donate';
+import TakeDonation from './src/screens/takeDonation';
+import Volunteer from './src/screens/volunteer';
 import Home from './src/screens/home';
-import Chat from './src/screens/chat';
-import SearchResources from './src/screens/resources-search';
-import AddResource from './src/screens/resource-add';
-import EditResource from './src/screens/resource-edit';
-import MyResources from './src/screens/resources-my';
-import Map from './src/screens/map';
+import {createAppContainer} from 'react-navigation';
 
-import { HomeIcon, DonateIcon, SearchIcon } from './src/images/svg-icons';
-
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
-
-const ResourcesStackOptions = ({ navigation }) => {
-  return ({
-    headerRight: () => (
-      <Button
-        onPress={() => navigation.navigate('Chat')}
-        title='Chat '
-      />
-    )
-  });
+const screens = {
+  home: {
+    screen: Home,
+  },
+  donate: {
+    screen: Donate,
+  },
+  takeDonation: {
+    screen: TakeDonation,
+  },
+  volunteer: {
+    screen: Volunteer,
+  },
 };
+const HomeStack = createStackNavigator(screens);
 
-const DonationsStackOptions = ({ navigation }) => {
-  return ({
-    headerRight: () => (
-      <Button
-        onPress={() => navigation.navigate('Add Donation')}
-        title='Add '
-      />
-    )
-  });
-};
-
-const tabBarOptions = {
-  // showLabel: false,
-  activeTintColor: '#1062FE',
-  inactiveTintColor: '#000',
-  style: {
-    backgroundColor: '#F1F0EE',
-    paddingTop: 5
-  }
-};
-
-const TabLayout = () => (
-  <Tab.Navigator
-    style={{paddingTop: 50}}
-    initialRouteName='Home'
-    tabBarOptions={tabBarOptions} >
-    <Tab.Screen
-      name='Home'
-      component={Home}
-      options={{
-        tabBarIcon: ({color}) => (<HomeIcon fill={color}/>)
-      }}
-    />
-    <Tab.Screen
-      name='Donate'
-      component={DonateStackLayout}
-      options={{
-        tabBarIcon: ({color}) => (<DonateIcon fill={color} />)
-      }}
-    />
-    <Tab.Screen
-      name='Search'
-      component={SearchStackLayout}
-      options={{
-        tabBarIcon: ({color}) => (<SearchIcon fill={color} />)
-      }}
-    />
-  </Tab.Navigator>
-);
-
-const DonateStackLayout = () => (
-  <Stack.Navigator>
-  <Stack.Screen name='My Donations' component={MyResources} options={DonationsStackOptions} />
-    <Stack.Screen name='Add Donation' component={AddResource} />
-    <Stack.Screen name='Edit Donation' component={EditResource} />
-  </Stack.Navigator>
-);
-
-const SearchStackLayout = () => (
-  <Stack.Navigator>
-    <Stack.Screen name='Search Resources' component={SearchResources} options={ResourcesStackOptions} />
-    <Stack.Screen name='Chat' component={Chat} />
-    <Stack.Screen name='Map' component={Map} />
-  </Stack.Navigator>
-);
-
-const App = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
-
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, []);
-
-  if (isLoading) {
-    return (<LoadingScreen />);
-  } else {
-    return (
-      <NavigationContainer>
-        <TabLayout/>
-      </NavigationContainer>
-    );
-  }
-};
-
-export default App;
+export default createAppContainer(HomeStack);
