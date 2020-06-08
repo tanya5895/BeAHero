@@ -1,17 +1,3 @@
-// import React from 'react';
-// import {
-//   StyleSheet,
-//   View,
-//   Image,
-//   Text,
-//   TouchableOpacity,
-//   Button,
-//   Linking,
-//   Alert,
-// } from 'react-native';
-// import {ScrollView} from 'react-native-gesture-handler';
-// // import {Router, Scene} from 'react-native-router-flux';
-
 const styles = StyleSheet.create({
   center: {
     flex: 1,

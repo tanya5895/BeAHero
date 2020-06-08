@@ -7,7 +7,7 @@ class Donate extends Component {
     return (
       <View>
         <Text>Donate</Text>
-        <Button title="ksjnkjn" />
+        <Button title="send" />
       </View>
     );
   }
