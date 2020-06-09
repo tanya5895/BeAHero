@@ -11,12 +11,14 @@
     "link": "react-native link"
   },
   "dependencies": {
+    "@material-ui/icons": "^4.9.1",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "^0.1.7",
     "@react-navigation/bottom-tabs": "^5.1.1",
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.5.1",
     "expo": "^37.0.12",
+    "material-design-icons": "^3.0.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-config": "^0.12.0",
