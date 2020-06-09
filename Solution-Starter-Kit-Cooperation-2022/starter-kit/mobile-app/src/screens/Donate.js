@@ -32,6 +32,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 const styles = StyleSheet.create({
   flatListView: {
     backgroundColor: '#FFF',
+    shadowColor: '#eee',
   },
   itemTouchable: {
     flexDirection: 'column',
@@ -132,6 +133,8 @@ const MyResources = function({navigation}) {
           data={items}
           renderItem={({item}) => <Item {...item} />}
           keyExtractor={item => item.id || item['_id']}
+          //   numColumns={4}
+          //   key={item => item.id || item['_id']}
         />
         <TouchableOpacity
           style={styles.buttonGroup}

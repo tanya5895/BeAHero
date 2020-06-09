@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 5,
     width: '100%',
-    paddingLeft: '25%',
+    paddingLeft: '30%',
   },
   button: {
     backgroundColor: '#4caf50',
@@ -85,6 +85,11 @@ class Home extends Component {
               style={styles.button}>
               <Text style={styles.subtitle}>volunteer</Text>
             </TouchableOpacity>
+            {/* <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('map')}
+              style={styles.button}>
+              <Text style={styles.subtitle}>Possible gatherings</Text>
+            </TouchableOpacity> */}
           </View>
         </ScrollView>
       </View>

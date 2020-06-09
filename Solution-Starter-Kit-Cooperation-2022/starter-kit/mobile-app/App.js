@@ -8,7 +8,11 @@ import MyResources from './src/screens/resources-my';
 import EditResource from './src/screens/resource-edit';
 import AddResource from './src/screens/resource-add';
 import {createAppContainer} from 'react-navigation';
-import {Button} from 'react-native';
+import {Button, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import Map from './src/screens/map';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createApppContainer, Navigator} from 'react-navigation';
 
 const screens = {
   home: {
@@ -16,20 +20,43 @@ const screens = {
   },
   donate: {
     screen: Donate,
+    navigationOptions: {
+      title: 'Your services',
+    },
   },
   takeDonation: {
     screen: TakeDonation,
+    navigationOptions: {
+      title: 'Take a service',
+    },
   },
   volunteer: {
     screen: Volunteer,
+    navigationOptions: {
+      title: 'Volunteer',
+    },
   },
   editDonation: {
     screen: EditResource,
+    navigationOptions: {
+      title: 'Edit service',
+    },
   },
   addDonation: {
     screen: AddResource,
+    navigationOptions: {
+      title: 'Add a service',
+    },
+  },
+  map: {
+    screen: Map,
   },
 };
-const HomeStack = createStackNavigator(screens);
+const HomeStack = createStackNavigator(screens, {
+  defaultNavigationOptions: {
+    headerTintColor: '#444',
+    headerStyle: {backgroundColor: '#eee'},
+  },
+});
 
 export default createAppContainer(HomeStack);
