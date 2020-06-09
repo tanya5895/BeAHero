@@ -149,6 +149,11 @@ const MyResources = function({navigation}) {
         <Text style={styles.emptyListText}>
           You currently have no donations listed
         </Text>
+        <TouchableOpacity
+          style={styles.buttonGroup}
+          onPress={() => navigation.navigate('addDonation')}>
+          <Text style={styles.button}>Add service</Text>
+        </TouchableOpacity>
       </View>
     );
   }
