@@ -10,7 +10,7 @@ import PickerSelect from 'react-native-picker-select';
 import {CheckedIcon, UncheckedIcon} from '../images/svg-icons';
 import Geolocation from '@react-native-community/geolocation';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
+import {addVolunteer} from '../lib/utils';
 
   const styles = StyleSheet.create({
     outerView: {
@@ -98,8 +98,8 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
       name: '',
       location: '',
       contact: '',
-      starttime:'Start time',
-      endtime:'End time',
+      starttime:'',
+      endtime:'',
       NGO:'',
     };
     const [item, setItem] = React.useState(clearItem);
@@ -114,10 +114,18 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
     const hideDatePicker = () => {
       setDatePickerVisibility(false);
     }; 
-    const handleConfirm = (date => {
+    const handleConfirm1 = (date => {
       setItem({
         ...item,
         starttime: date,
+      });
+      console.warn("A date has been picked: ", date);
+      hideDatePicker();
+    });
+    const handleConfirm2 = (date => {
+      setItem({
+        ...item,
+        endtime: date,
       });
       console.warn("A date has been picked: ", date);
       hideDatePicker();
@@ -158,12 +166,12 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
     const sendItem = () => {
       const payload = {
         ...item,
-        quantity: isNaN(item.quantity) ? 1 : parseInt(item.quantity),
+       
       };
   
-      add(payload)
+      addVolunteer(payload)
         .then(() => {
-          Alert.alert('Thank you!', 'Your item has been added.', [{text: 'OK'}]);
+          Alert.alert('Thank you!', 'You for registration.', [{text: 'OK'}]);
           setItem({...clearItem, location: payload.location});
         })
         .catch(err => {
@@ -233,27 +241,38 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
           <View style={styles.timerange}>
 
           <View style={{flex:1}}>
-          <TouchableOpacity onPress={showDatePicker}>
-          <Text  style={styles.text}>{item.starttime}</Text>
+         
+          <TextInput   
+          style={styles.textInput} 
+          onFocus={showDatePicker}
+          value={item.starttime}
+          onChangeText={t => setItem({...item, starttime: t})}
+          placeholder="start time"
+          ></TextInput>
         <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="time"
-        onConfirm={handleConfirm}
+        onConfirm={handleConfirm1}
         onCancel={hideDatePicker}
       />
-      </TouchableOpacity>
+     
       </View>
 
         <View style={{flex:1}}>
-        <TouchableOpacity onPress={showDatePicker}>
-        <Text  style={styles.text}>{item.endtime}</Text>
+        <TextInput   
+          style={styles.textInput} 
+          onFocus={showDatePicker}
+          value={item.endtime}
+          onChangeText={t => setItem({...item, endtime: t})}
+          placeholder="end time"
+          ></TextInput>
         <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="time"
-        onConfirm={handleConfirm}
+        onConfirm={handleConfirm2}
         onCancel={hideDatePicker}
       />
-      </TouchableOpacity>
+      
       </View>
         </View>
         
