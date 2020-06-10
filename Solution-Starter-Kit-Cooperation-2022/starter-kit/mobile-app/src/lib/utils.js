@@ -55,6 +55,27 @@ export const add = item => {
     }
   });
 };
+export const addVolunteer = item => {
+  return fetch(`${serverUrl}/api/resource`, {
+    method: 'POST',
+    mode: 'no-cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(item),
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error(
+        response.statusText || response.message || response.status,
+      );
+    } else {
+      return response.json();
+    }
+  });
+};
+
+
 
 export const update = item => {
   return fetch(`${serverUrl}/api/resource/${item.id}`, {
