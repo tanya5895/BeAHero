@@ -27,7 +27,18 @@ const Map = props => {
       });
       // props.navigation.state.params.item
       if (props.navigation.state.params && props.navigation.state.params.item) {
-        sendMessage({item: props.navigation.state.params.item});
+        // console.log(
+        //   'SENDING MESSAGE WITH PROPS',
+        //   props.navigation.state.params.item['location'].split(','),
+        // );
+        // cordinates = props.navigation.state.params.item['location'].split(',');
+        Geolocation.getCurrentPosition(position => {
+          // console.log('position coords', position.coords);
+          position.coords.latitude = ' 40.785834';
+          position.coords.longitude = '-120.406417';
+          console.log('Reciever location', position.coords);
+          sendMessage(position);
+        });
       }
     } else if (message.search) {
       search(message.search)

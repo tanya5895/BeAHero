@@ -8,54 +8,74 @@ import MyResources from './src/screens/resources-my';
 import EditResource from './src/screens/resource-edit';
 import AddResource from './src/screens/resource-add';
 import {createAppContainer} from 'react-navigation';
-import {Button, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Button} from 'react-native';
+import SearchResources from './src/screens/resources-search';
 import Map from './src/screens/map';
-import {createDrawerNavigator} from 'react-navigation-drawer';
-import {createApppContainer, Navigator} from 'react-navigation';
-
+import NewMap from './src/screens/NewMap';
+import OrderConfirmation from './src/screens/orderConfirmation';
+import OrderPending from './src/screens/orderPending';
 const screens = {
   home: {
     screen: Home,
+    navigationOptions: {
+      title: 'BeAHero',
+      headerStyle: {backgroundColor: '#eee'},
+    },
   },
   donate: {
     screen: Donate,
     navigationOptions: {
       title: 'Your services',
+      headerStyle: {backgroundColor: '#eee'},
     },
   },
   takeDonation: {
-    screen: TakeDonation,
+    screen: SearchResources,
     navigationOptions: {
       title: 'Take a service',
+      headerStyle: {backgroundColor: '#eee'},
+    },
+  },
+  'order confirmation': {
+    screen: OrderConfirmation,
+    navigationOptions: {
+      title: 'Order Confirmation',
+      headerStyle: {backgroundColor: '#eee'},
+    },
+  },
+  'order pending': {
+    screen: OrderPending,
+    navigationOptions: {
+      title: 'order pending',
+      headerStyle: {backgroundColor: '#eee'},
     },
   },
   volunteer: {
     screen: Volunteer,
     navigationOptions: {
       title: 'Volunteer',
+      headerStyle: {backgroundColor: '#eee'},
     },
   },
   editDonation: {
     screen: EditResource,
     navigationOptions: {
       title: 'Edit service',
+      headerStyle: {backgroundColor: '#eee'},
     },
   },
   addDonation: {
     screen: AddResource,
     navigationOptions: {
       title: 'Add a service',
+      headerStyle: {backgroundColor: '#eee'},
     },
-  },
-  map: {
-    screen: Map,
   },
 };
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerTintColor: '#444',
     headerStyle: {backgroundColor: '#eee'},
+    headerTintColor: '#444',
   },
 });
 
