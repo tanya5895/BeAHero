@@ -2,11 +2,11 @@ import Config from 'react-native-config';
 
 import DeviceInfo from 'react-native-device-info';
 
-let serverUrl = Config.STARTER_KIT_SERVER_URL;
-if (serverUrl.endsWith('/')) {
-  serverUrl = serverUrl.slice(0, -1);
-}
-// const serverUrl = 'http://localhost:3000';
+// let serverUrl = Config.STARTER_KIT_SERVER_URL;
+// if (serverUrl.endsWith('/')) {
+//   serverUrl = serverUrl.slice(0, -1);
+// }
+const serverUrl = 'http://localhost:3000';
 
 const uniqueid = DeviceInfo.getUniqueId();
 
@@ -23,6 +23,32 @@ export const search = query => {
     `${serverUrl}/api/resource?${name}&${type}&${userID}`,
   );
   return fetch(`${serverUrl}/api/resource?${name}&${type}&${userID}`, {
+    method: 'GET',
+    mode: 'no-cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error(
+        response.statusText || response.message || response.status,
+      );
+    } else {
+      // console.log('data ', response.json().length);
+      return response.json();
+    }
+  });
+};
+
+export const searchVolunteer = query => {
+  const orderPlaced = `orderPlaced=${'false'}`;
+ 
+  console.log(
+    'searchVolunteer ',
+    `${serverUrl}/api/resource?${orderPlaced}`,
+  );
+  return fetch(`${serverUrl}/api/resource?${orderPlaced}`, {
     method: 'GET',
     mode: 'no-cors',
     cache: 'no-cache',

@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 10,
     borderRadius: 10,
+    width:100,
   },
   viewConfirmation: {
     backgroundColor: '#f5a31a',
@@ -26,14 +27,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 10,
     borderRadius: 10,
+    width:140,
   },
 });
 class Accept extends Component {
   state = {};
   renderButton(props) {
-    if (props.name.name == 'Request') {
+    if (props.name.name == 'Request' || props.name.name == 'Accept') {
       return <Text style={styles.acceptButton}>{this.props.name.name}</Text>;
-    } else {
+    } 
+    else {
       return (
         <Text style={styles.viewConfirmation}>{this.props.name.name}</Text>
       );

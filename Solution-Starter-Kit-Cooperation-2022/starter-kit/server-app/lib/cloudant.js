@@ -106,6 +106,27 @@ const dbCloudantConnect = () => {
  *          could be located that matches.
  *  reject(): the err object from the underlying data store
  */
+function findvolunteer(orderPlaced) {
+  return new Promise((resolve, reject) => {
+    let selector = {};
+
+    selector["orderPlaced"] = orderPlaced;
+
+    db.find(
+      {
+        selector: selector,
+      },
+      (err, documents) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve({ data: JSON.stringify(documents.docs), statusCode: 200 });
+        }
+      }
+    );
+  });
+}
+
 function find(type, partialName, userID) {
   return new Promise((resolve, reject) => {
     let selector = {};
@@ -293,7 +314,8 @@ function update(
   userID,
   NGO,
   orderPlaced,
-  listOfbuyerId
+  listOfbuyerId,
+  is_accepted
 ) {
   return new Promise((resolve, reject) => {
     db.get(id, (err, document) => {
@@ -354,6 +376,11 @@ function update(
         } else {
           item["listOfbuyerId"] = document.listOfbuyerId;
         }
+        if (is_accepted) {
+          item["is_accepted"] = is_accepted;
+        } else {
+          item["is_accepted"] = "false";
+        }
 
         db.insert(item, (err, result) => {
           if (err) {
@@ -381,5 +408,5 @@ module.exports = {
   update: update,
   find: find,
   info: info,
-  //   createOrder: createOrder,
+  findvolunteer: findvolunteer,
 };

@@ -160,6 +160,20 @@ app.get("/api/resource", (req, res) => {
     .catch((err) => handleError(res, err));
 });
 
+app.get("/api/resource/volunteer", (req, res) => {
+  const orderPlaced = req.query.orderPlaced;
+  cloudant
+    .findvolunteer(orderPlaced)
+    .then((data) => {
+      if (data.statusCode != 200) {
+        res.sendStatus(data.statusCode);
+      } else {
+        res.send(data.data);
+      }
+    })
+    .catch((err) => handleError(res, err));
+});
+
 /**
  * Create a new resource
  *
@@ -291,7 +305,8 @@ app.post("/api/resource", (req, res) => {
  */
 
 app.patch("/api/resource/:id", (req, res) => {
-  console.log("UPDATE BODY ", req.body);
+  console.log("update server ", req.body);
+
   const type = req.body.type || "";
   const name = req.body.name || "";
   const description = req.body.description || "";
@@ -301,6 +316,7 @@ app.patch("/api/resource/:id", (req, res) => {
   const contact = req.body.contact || "";
   const NGO = req.body.NGO || "";
   const orderPlaced = req.body.orderPlaced || "";
+  const is_accepted = req.body.is_accepted || "";
   const listOfbuyerId = req.body.listOfbuyerId || "";
 
   cloudant
@@ -315,7 +331,8 @@ app.patch("/api/resource/:id", (req, res) => {
       userID,
       NGO,
       orderPlaced,
-      listOfbuyerId
+      listOfbuyerId,
+      is_accepted
     )
     .then((data) => {
       if (data.statusCode != 200) {
