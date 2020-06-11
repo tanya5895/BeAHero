@@ -89,6 +89,9 @@ class Home extends Component {
           if (res.orderPlaced == 'true') {
             this.state.takenCount = this.state.takenCount + 1;
           }
+          if (res.is_accepted == 'true') {
+            this.state.volunteerCount = this.state.volunteerCount + 1;
+          }
         }
         console.log(this.state.takenCount);
         x = response.length;
