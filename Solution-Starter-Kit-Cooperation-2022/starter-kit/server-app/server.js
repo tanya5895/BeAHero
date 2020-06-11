@@ -162,6 +162,7 @@ app.get("/api/resource", (req, res) => {
 
 app.get("/api/resource/volunteer", (req, res) => {
   const orderPlaced = req.query.orderPlaced;
+  console.log("ORDER PLACED", orderPlaced);
   cloudant
     .findvolunteer(orderPlaced)
     .then((data) => {
