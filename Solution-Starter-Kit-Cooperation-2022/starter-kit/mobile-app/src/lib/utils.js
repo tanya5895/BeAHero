@@ -41,6 +41,32 @@ export const search = query => {
   });
 };
 
+export const searchVolunteer = query => {
+  const orderPlaced = `orderPlaced=${'false'}`;
+ 
+  console.log(
+    'searchVolunteer ',
+    `${serverUrl}/api/resource?${orderPlaced}`,
+  );
+  return fetch(`${serverUrl}/api/resource?${orderPlaced}`, {
+    method: 'GET',
+    mode: 'no-cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error(
+        response.statusText || response.message || response.status,
+      );
+    } else {
+      // console.log('data ', response.json().length);
+      return response.json();
+    }
+  });
+};
+
 export const add = item => {
   console.log('POSTING THIS ITEM ', item);
   return fetch(`${serverUrl}/api/resource`, {
