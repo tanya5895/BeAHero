@@ -300,6 +300,7 @@ app.patch("/api/resource/:id", (req, res) => {
   const contact = req.body.contact || "";
   const NGO = req.body.NGO || "";
   const orderPlaced = req.body.orderPlaced || "";
+  const listOfbuyerId = req.body.listOfbuyerId || "";
 
   cloudant
     .update(
@@ -312,7 +313,8 @@ app.patch("/api/resource/:id", (req, res) => {
       contact,
       userID,
       NGO,
-      orderPlaced
+      orderPlaced,
+      listOfbuyerId
     )
     .then((data) => {
       if (data.statusCode != 200) {

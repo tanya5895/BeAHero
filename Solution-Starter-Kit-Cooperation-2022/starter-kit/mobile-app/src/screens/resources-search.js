@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import PickerSelect from 'react-native-picker-select';
 
-import {search, update} from '../lib/utils';
+import {search, update, userID} from '../lib/utils';
 import Accept from '../screens/Accept-reject';
 
 const styles = StyleSheet.create({
@@ -93,11 +93,19 @@ const styles = StyleSheet.create({
 });
 
 const updateItem = (orderItem, navigation) => {
-  console.log('accepted', orderItem);
+  console.log('accepted', orderItem['listOfbuyerId']);
+  var listofBuyers = {};
+  if (orderItem['listOfbuyerId'] != undefined) {
+    listofBuyers = orderItem['listOfbuyerId'];
+  }
+  listofBuyers[orderItem['userID']] = true;
+  console.log('after', listofBuyers);
+
   const payload = {
     ...orderItem,
     id: orderItem.id || orderItem['_id'],
     orderPlaced: 'true',
+    listOfbuyerId: listofBuyers,
   };
   console.log('payload for update ', payload);
 
@@ -115,12 +123,16 @@ const SearchResources = function({route, navigation}) {
   const [query, setQuery] = React.useState({type: 'Food', name: ''});
   const [items, setItems] = React.useState([]);
   const [info, setInfo] = React.useState('');
-  const [modalVisible, setModalVisible] = React.useState('');
-  const [accepted, setAccepted] = React.useState('false');
   const AcceptButton = props => {
     let data = '';
-    console.log('orderplaced', props);
-    if (props.orderPlaced.orderPlaced == 'true') {
+    listOfbuyerId = props.orderPlaced['listOfbuyerId'] || {'': ''};
+    userIdForOrder = props.orderPlaced.userID;
+    console.log('orderplaced', listOfbuyerId[userIdForOrder], userIdForOrder);
+    if (
+      props.orderPlaced.orderPlaced == 'true' &&
+      listOfbuyerId[userIdForOrder]
+    ) {
+      Alert.alert(props.orderPlaced.orderPlaced['listOfbuyerId']);
       let PropData = {
         name: 'View Confirmation',
       };
