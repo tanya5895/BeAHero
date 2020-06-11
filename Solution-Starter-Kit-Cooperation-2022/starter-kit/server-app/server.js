@@ -291,6 +291,7 @@ app.post("/api/resource", (req, res) => {
  */
 
 app.patch("/api/resource/:id", (req, res) => {
+  console.log("UPDATE BODY ", req.body);
   const type = req.body.type || "";
   const name = req.body.name || "";
   const description = req.body.description || "";

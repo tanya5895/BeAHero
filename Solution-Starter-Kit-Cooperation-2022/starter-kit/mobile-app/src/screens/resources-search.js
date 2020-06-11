@@ -152,7 +152,7 @@ const SearchResources = function({route, navigation}) {
           ),
         },
       ];
-    } else {
+    } else if (props.orderPlaced.orderPlaced == 'false') {
       let acceptPropData = {
         name: 'Request',
       };
@@ -173,6 +173,10 @@ const SearchResources = function({route, navigation}) {
         },
       ];
     }
+
+    // props.orderPlaced.orderPlaced == 'true' &&
+    // !listOfbuyerId[userIdForOrder]
+
     return (
       <FlatList
         data={data}
@@ -183,23 +187,37 @@ const SearchResources = function({route, navigation}) {
     );
   };
   const Item = props => {
-    return (
-      <View style={{borderBottomColor: '#dddddd', borderBottomWidth: 0.25}}>
-        <TouchableOpacity style={styles.itemTouchable}>
-          <View style={styles.itemView}>
-            <Text style={styles.itemName}>{props.name}</Text>
-            <Text style={styles.itemQuantity}> ( {props.quantity} ) </Text>
+    listOfbuyerId = props.listOfbuyerId;
+    userIdForOrder = props.userID;
+    console.log('RENDERING ITEM ', userIdForOrder);
+    if (
+      !(
+        listOfbuyerId != undefined &&
+        !listOfbuyerId[userIdForOrder] &&
+        props.orderPlaced
+      )
+    ) {
+      // console.log(props.name, 'AVAILABLE ');
+      return (
+        <View style={{borderBottomColor: '#dddddd', borderBottomWidth: 0.25}}>
+          <TouchableOpacity style={styles.itemTouchable}>
+            <View style={styles.itemView}>
+              <Text style={styles.itemName}>{props.name}</Text>
+              <Text style={styles.itemQuantity}> ( {props.quantity} ) </Text>
+            </View>
+            <View style={styles.itemView}>
+              <Text style={styles.ngoItem}>Provided By, {props.NGO}</Text>
+            </View>
+            <Text style={styles.itemDescription}>{props.description}</Text>
+          </TouchableOpacity>
+          <View>
+            <AcceptButton orderPlaced={props} />
           </View>
-          <View style={styles.itemView}>
-            <Text style={styles.ngoItem}>Provided By, {props.NGO}</Text>
-          </View>
-          <Text style={styles.itemDescription}>{props.description}</Text>
-        </TouchableOpacity>
-        <View>
-          <AcceptButton orderPlaced={props} />
         </View>
-      </View>
-    );
+      );
+    } else {
+      return <View />;
+    }
   };
 
   const searchItem = () => {
