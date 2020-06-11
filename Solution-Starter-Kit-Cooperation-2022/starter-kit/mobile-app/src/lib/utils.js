@@ -42,13 +42,12 @@ export const search = query => {
 };
 
 export const searchVolunteer = query => {
-  const orderPlaced = `orderPlaced=${'false'}`;
- 
+  const orderPlaced = `orderPlaced=${'true'}`;
   console.log(
     'searchVolunteer ',
-    `${serverUrl}/api/resource?${orderPlaced}`,
+    `${serverUrl}/api/resource/volunteer?${orderPlaced}`,
   );
-  return fetch(`${serverUrl}/api/resource?${orderPlaced}`, {
+  return fetch(`${serverUrl}/api/resource/volunteer?${orderPlaced}`, {
     method: 'GET',
     mode: 'no-cors',
     cache: 'no-cache',
