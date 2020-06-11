@@ -18,6 +18,10 @@ export const search = query => {
   const type = query.type ? `type=${query.type}` : '';
   const name = query.name ? `name=${query.name}` : '';
   const userID = query.userID ? `userID=${query.userID}` : '';
+  console.log(
+    'url call ',
+    `${serverUrl}/api/resource?${name}&${type}&${userID}`,
+  );
   return fetch(`${serverUrl}/api/resource?${name}&${type}&${userID}`, {
     method: 'GET',
     mode: 'no-cors',
@@ -31,12 +35,14 @@ export const search = query => {
         response.statusText || response.message || response.status,
       );
     } else {
+      // console.log('data ', response.json().length);
       return response.json();
     }
   });
 };
 
 export const add = item => {
+  console.log('POSTING THIS ITEM ', item);
   return fetch(`${serverUrl}/api/resource`, {
     method: 'POST',
     mode: 'no-cors',
@@ -51,12 +57,15 @@ export const add = item => {
         response.statusText || response.message || response.status,
       );
     } else {
+      console.log('response for adding ', response.json);
       return response.json();
     }
   });
 };
 
 export const update = item => {
+  console.log('ITEM TO BE UPDATED ', item);
+  console.log('update url ', `${serverUrl}/api/resource/${item.id}`);
   return fetch(`${serverUrl}/api/resource/${item.id}`, {
     method: 'PATCH',
     mode: 'no-cors',
