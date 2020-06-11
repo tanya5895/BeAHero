@@ -107,21 +107,24 @@ const dbCloudantConnect = () => {
  *  reject(): the err object from the underlying data store
  */
 function findvolunteer(orderPlaced) {
-    return new Promise((resolve, reject) => {
-        let selector = {}
-        
-            selector['orderPlaced'] = orderPlaced;
-        
-        db.find({ 
-            'selector': selector
-        }, (err, documents) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ data: JSON.stringify(documents.docs), statusCode: 200});
-            }
-        });
-    });
+  return new Promise((resolve, reject) => {
+    let selector = {};
+
+    selector["orderPlaced"] = orderPlaced;
+
+    db.find(
+      {
+        selector: selector,
+      },
+      (err, documents) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve({ data: JSON.stringify(documents.docs), statusCode: 200 });
+        }
+      }
+    );
+  });
 }
 
 function find(type, partialName, userID) {
@@ -155,8 +158,6 @@ function find(type, partialName, userID) {
     );
   });
 }
-
-
 
 /**
  * Delete a resource that matches a ID.
@@ -313,6 +314,7 @@ function update(
   userID,
   NGO,
   orderPlaced,
+  listOfbuyerId,
   is_accepted
 ) {
   return new Promise((resolve, reject) => {
@@ -367,13 +369,18 @@ function update(
         if (orderPlaced) {
           item["orderPlaced"] = orderPlaced;
         } else {
-          item["NGO"] = "false";
+          item["orderPlaced"] = "false";
+        }
+        if (listOfbuyerId) {
+          item["listOfbuyerId"] = listOfbuyerId;
+        } else {
+          item["listOfbuyerId"] = document.listOfbuyerId;
         }
         if (is_accepted) {
-            item["is_accepted"] = is_accepted;
-          } else {
-            item["is_accepted"] = "false";
-          }
+          item["is_accepted"] = is_accepted;
+        } else {
+          item["is_accepted"] = "false";
+        }
 
         db.insert(item, (err, result) => {
           if (err) {
@@ -396,12 +403,10 @@ function info() {
 }
 
 module.exports = {
-
-    deleteById: deleteById,
-    create: create,
-    update: update,
-    find: find,
-    info: info,
-    findvolunteer:findvolunteer
-  };
-
+  deleteById: deleteById,
+  create: create,
+  update: update,
+  find: find,
+  info: info,
+  findvolunteer: findvolunteer,
+};

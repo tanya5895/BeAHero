@@ -160,18 +160,18 @@ app.get("/api/resource", (req, res) => {
     .catch((err) => handleError(res, err));
 });
 
-app.get('/api/resource/volunteer', (req, res) => {
-  
+app.get("/api/resource/volunteer", (req, res) => {
   const orderPlaced = req.query.orderPlaced;
-  cloudant.findvolunteer(orderPlaced)
-    .then(data => {
+  cloudant
+    .findvolunteer(orderPlaced)
+    .then((data) => {
       if (data.statusCode != 200) {
-        res.sendStatus(data.statusCode)
+        res.sendStatus(data.statusCode);
       } else {
-        res.send(data.data)
+        res.send(data.data);
       }
     })
-    .catch(err => handleError(res, err));
+    .catch((err) => handleError(res, err));
 });
 
 /**
@@ -305,8 +305,7 @@ app.post("/api/resource", (req, res) => {
  */
 
 app.patch("/api/resource/:id", (req, res) => {
-
-  console.log('update server ', req.body);
+  console.log("update server ", req.body);
 
   const type = req.body.type || "";
   const name = req.body.name || "";
@@ -318,6 +317,8 @@ app.patch("/api/resource/:id", (req, res) => {
   const NGO = req.body.NGO || "";
   const orderPlaced = req.body.orderPlaced || "";
   const is_accepted = req.body.is_accepted || "";
+  const listOfbuyerId = req.body.listOfbuyerId || "";
+
   cloudant
     .update(
       req.params.id,
@@ -330,6 +331,7 @@ app.patch("/api/resource/:id", (req, res) => {
       userID,
       NGO,
       orderPlaced,
+      listOfbuyerId,
       is_accepted
     )
     .then((data) => {

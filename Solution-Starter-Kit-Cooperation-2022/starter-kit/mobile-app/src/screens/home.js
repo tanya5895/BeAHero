@@ -75,13 +75,22 @@ import {search, userID} from '../lib/utils';
 
 class Home extends Component {
   state = {
-    count: '',
+    volunteerCount: 0,
+    takenCount: 0,
+    count: 0,
     items: [],
   };
 
   UNSAFE_componentWillMount() {
     search({userID: userID()})
       .then(response => {
+        for (res of response) {
+          console.log('res === ', res);
+          if (res.orderPlaced == 'true') {
+            this.state.takenCount = this.state.takenCount + 1;
+          }
+        }
+        console.log(this.state.takenCount);
         x = response.length;
         this.setState({
           count: x,
@@ -135,11 +144,14 @@ class Home extends Component {
                   },
                   {
                     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-                    title: {name: 'taken', value: this.state.count},
+                    title: {name: 'taken', value: this.state.takenCount},
                   },
                   {
                     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-                    title: {name: 'volunteered', value: this.state.count},
+                    title: {
+                      name: 'volunteered',
+                      value: this.state.volunteerCount,
+                    },
                   },
                 ]}
                 renderItem={({item}) => (
