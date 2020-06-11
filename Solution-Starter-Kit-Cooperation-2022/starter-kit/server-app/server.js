@@ -305,6 +305,9 @@ app.post("/api/resource", (req, res) => {
  */
 
 app.patch("/api/resource/:id", (req, res) => {
+
+  console.log('update server ', req.body);
+
   const type = req.body.type || "";
   const name = req.body.name || "";
   const description = req.body.description || "";
@@ -314,7 +317,7 @@ app.patch("/api/resource/:id", (req, res) => {
   const contact = req.body.contact || "";
   const NGO = req.body.NGO || "";
   const orderPlaced = req.body.orderPlaced || "";
-
+  const is_accepted = req.body.is_accepted || "";
   cloudant
     .update(
       req.params.id,
@@ -326,7 +329,8 @@ app.patch("/api/resource/:id", (req, res) => {
       contact,
       userID,
       NGO,
-      orderPlaced
+      orderPlaced,
+      is_accepted
     )
     .then((data) => {
       if (data.statusCode != 200) {

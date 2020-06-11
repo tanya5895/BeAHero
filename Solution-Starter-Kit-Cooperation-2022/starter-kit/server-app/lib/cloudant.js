@@ -312,7 +312,8 @@ function update(
   contact,
   userID,
   NGO,
-  orderPlaced
+  orderPlaced,
+  is_accepted
 ) {
   return new Promise((resolve, reject) => {
     db.get(id, (err, document) => {
@@ -368,6 +369,11 @@ function update(
         } else {
           item["NGO"] = "false";
         }
+        if (is_accepted) {
+            item["is_accepted"] = is_accepted;
+          } else {
+            item["is_accepted"] = "false";
+          }
 
         db.insert(item, (err, result) => {
           if (err) {
@@ -390,7 +396,7 @@ function info() {
 }
 
 module.exports = {
-<<<<<<< HEAD
+
     deleteById: deleteById,
     create: create,
     update: update,
@@ -398,12 +404,4 @@ module.exports = {
     info: info,
     findvolunteer:findvolunteer
   };
-=======
-  deleteById: deleteById,
-  create: create,
-  update: update,
-  find: find,
-  info: info,
-  //   createOrder: createOrder,
-};
->>>>>>> origin
+
