@@ -43,11 +43,8 @@ export const search = query => {
 
 export const searchVolunteer = query => {
   const orderPlaced = `orderPlaced=${'false'}`;
- 
-  console.log(
-    'searchVolunteer ',
-    `${serverUrl}/api/resource?${orderPlaced}`,
-  );
+
+  console.log('searchVolunteer ', `${serverUrl}/api/resource?${orderPlaced}`);
   return fetch(`${serverUrl}/api/resource?${orderPlaced}`, {
     method: 'GET',
     mode: 'no-cors',

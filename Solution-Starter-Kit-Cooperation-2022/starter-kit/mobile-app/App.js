@@ -11,17 +11,45 @@ import {createAppContainer} from 'react-navigation';
 import {Button} from 'react-native';
 import SearchResources from './src/screens/resources-search';
 import Map from './src/screens/map';
-import NewMap from './src/screens/NewMap';
-import OrderConfirmation from './src/screens/orderConfirmation';
-import OrderPending from './src/screens/orderPending';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createApppContainer, Navigator} from 'react-navigation';
+import EntryLoginPage from './src/screens/entryLoginPage';
+import NgoPage from './src/screens/ngoPage';
+import SignUpAsUser from './src/screens/signUpAsUser';
+import SignUpAsNGO from './src/screens/signUpAsNgo';
+
 const screens = {
+  entryLoginPage: {
+    screen: EntryLoginPage,
+  },
+
   home: {
     screen: Home,
     navigationOptions: {
-      title: 'BeAHero',
-      headerStyle: {backgroundColor: '#eee'},
+      title: 'Home',
     },
   },
+
+  ngoPage: {
+    screen: NgoPage,
+    navigationOptions: {
+      title: 'NGO Dashboard',
+    },
+  },
+  signUpAsUser: {
+    screen: SignUpAsUser,
+    navigationOptions: {
+      title: 'User Sign Up',
+    },
+  },
+
+  signUpAsNgo: {
+    screen: SignUpAsNGO,
+    navigationOptions: {
+      title: 'NGO Sign Up',
+    },
+  },
+
   donate: {
     screen: Donate,
     navigationOptions: {
