@@ -128,11 +128,12 @@ const SearchResources = function({route, navigation}) {
     listOfbuyerId = props.orderPlaced['listOfbuyerId'] || {'': ''};
     userIdForOrder = props.orderPlaced.userID;
     console.log('orderplaced', listOfbuyerId[userIdForOrder], userIdForOrder);
+    console.log('accepted', props.orderPlaced.is_accepted);
     if (
-      props.orderPlaced.orderPlaced == 'true' &&
+      props.orderPlaced.is_accepted == 'true' &&
       listOfbuyerId[userIdForOrder]
     ) {
-      Alert.alert(props.orderPlaced.orderPlaced['listOfbuyerId']);
+      // Alert.alert(props.orderPlaced.orderPlaced['listOfbuyerId']);
       let PropData = {
         name: 'View Confirmation',
       };
@@ -145,6 +146,31 @@ const SearchResources = function({route, navigation}) {
                 onPress={() => {
                   console.log('clicked ');
                   navigation.navigate('order confirmation');
+                }}>
+                <Accept name={PropData} />
+              </TouchableOpacity>
+            </View>
+          ),
+        },
+      ];
+    } else if (
+      (props.orderPlaced.is_accepted == 'false' ||
+        props.orderPlaced.is_accepted == undefined) &&
+      listOfbuyerId[userIdForOrder]
+    ) {
+      // Alert.alert(props.orderPlaced.orderPlaced['listOfbuyerId']);
+      let PropData = {
+        name: 'View Confirmation',
+      };
+      data = [
+        {
+          id: '2',
+          title: (
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('clicked ');
+                  navigation.navigate('order pending');
                 }}>
                 <Accept name={PropData} />
               </TouchableOpacity>
@@ -197,7 +223,7 @@ const SearchResources = function({route, navigation}) {
         props.orderPlaced
       )
     ) {
-      // console.log(props.name, 'AVAILABLE ');
+      console.log(props.name, 'AVAILABLE ');
       return (
         <View style={{borderBottomColor: '#dddddd', borderBottomWidth: 0.25}}>
           <TouchableOpacity style={styles.itemTouchable}>
