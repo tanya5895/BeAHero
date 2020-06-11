@@ -292,7 +292,8 @@ function update(
   contact,
   userID,
   NGO,
-  orderPlaced
+  orderPlaced,
+  listOfbuyerId
 ) {
   return new Promise((resolve, reject) => {
     db.get(id, (err, document) => {
@@ -346,7 +347,12 @@ function update(
         if (orderPlaced) {
           item["orderPlaced"] = orderPlaced;
         } else {
-          item["NGO"] = "false";
+          item["orderPlaced"] = "false";
+        }
+        if (listOfbuyerId) {
+          item["listOfbuyerId"] = listOfbuyerId;
+        } else {
+          item["listOfbuyerId"] = document.listOfbuyerId;
         }
 
         db.insert(item, (err, result) => {
