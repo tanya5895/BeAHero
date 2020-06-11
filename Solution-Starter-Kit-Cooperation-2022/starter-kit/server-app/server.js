@@ -157,6 +157,20 @@ app.get('/api/resource', (req, res) => {
     .catch(err => handleError(res, err));
 });
 
+app.get('/api/resource/volunteer', (req, res) => {
+  
+  const orderPlaced = req.query.orderPlaced;
+  cloudant.findvolunteer(orderPlaced)
+    .then(data => {
+      if (data.statusCode != 200) {
+        res.sendStatus(data.statusCode)
+      } else {
+        res.send(data.data)
+      }
+    })
+    .catch(err => handleError(res, err));
+});
+
 /**
  * Create a new resource
  *

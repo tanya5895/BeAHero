@@ -83,6 +83,24 @@ const dbCloudantConnect = () => {
  *          could be located that matches. 
  *  reject(): the err object from the underlying data store
  */
+function findvolunteer(orderPlaced) {
+    return new Promise((resolve, reject) => {
+        let selector = {}
+        
+            selector['orderPlaced'] = orderPlaced;
+        
+        db.find({ 
+            'selector': selector
+        }, (err, documents) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({ data: JSON.stringify(documents.docs), statusCode: 200});
+            }
+        });
+    });
+}
+
 function find(type, partialName, userID) {
     return new Promise((resolve, reject) => {
         let selector = {}
@@ -109,6 +127,8 @@ function find(type, partialName, userID) {
         });
     });
 }
+
+
 
 /**
  * Delete a resource that matches a ID.
@@ -240,5 +260,6 @@ module.exports = {
     create: create,
     update: update,
     find: find,
-    info: info
+    info: info,
+    findvolunteer:findvolunteer
   };
