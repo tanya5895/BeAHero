@@ -106,7 +106,7 @@ const dbCloudantConnect = () => {
  *          could be located that matches.
  *  reject(): the err object from the underlying data store
  */
-function find(type, partialName, userID, orderPlaced) {
+function find(type, partialName, userID) {
   return new Promise((resolve, reject) => {
     let selector = {};
     if (type) {
@@ -119,9 +119,9 @@ function find(type, partialName, userID, orderPlaced) {
     if (userID) {
       selector["userID"] = userID;
     }
-    if (orderPlaced) {
-      selector["orderPlaced"] = orderPlaced;
-    }
+    // if (orderPlaced) {
+    //   selector["orderPlaced"] = orderPlaced;
+    // }
 
     db.find(
       {
@@ -291,7 +291,8 @@ function update(
   location,
   contact,
   userID,
-  NGO
+  NGO,
+  orderPlaced
 ) {
   return new Promise((resolve, reject) => {
     db.get(id, (err, document) => {
@@ -341,6 +342,11 @@ function update(
           item["NGO"] = NGO;
         } else {
           item["NGO"] = document.NGO;
+        }
+        if (orderPlaced) {
+          item["orderPlaced"] = orderPlaced;
+        } else {
+          item["NGO"] = "false";
         }
 
         db.insert(item, (err, result) => {

@@ -102,6 +102,7 @@ const EditResource = props => {
     description: '',
     location: '',
     contact: '',
+    NGO: '',
     quantity: '1',
   };
   const [item, setItem] = React.useState(clearItem);
@@ -135,6 +136,7 @@ const EditResource = props => {
       ...item,
       quantity: isNaN(item.quantity) ? 1 : parseInt(item.quantity),
       id: item.id || item['_id'],
+      orderPlaced: 'false',
     };
 
     update(payload)
@@ -224,6 +226,20 @@ const EditResource = props => {
         enablesReturnKeyAutomatically={true}
         placeholder="user@domain.com"
       />
+      <View style={styles.typeArea}>
+        <Text style={styles.label}>NGO</Text>
+        <PickerSelect
+          style={{inputIOS: styles.selector}}
+          value={item.NGO}
+          onValueChange={t => setItem({...item, NGO: t})}
+          items={[
+            {label: 'NGO1', value: 'NGO1'},
+            {label: 'NGO2', value: 'NGO2'},
+            {label: 'NGO3', value: 'NGO3'},
+            {label: 'NGO4', value: 'NGO4'},
+          ]}
+        />
+      </View>
       <Text style={styles.label}>Description</Text>
       <TextInput
         style={styles.textInput}

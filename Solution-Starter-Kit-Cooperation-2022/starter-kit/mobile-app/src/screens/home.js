@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   scroll: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 25,
-    paddingTop: 75,
+    // paddingLeft: 10,
+    // paddingRight: 20,
+    // paddingBottom: 25,
+    // paddingTop: 75,
   },
   image: {
     height: '80%',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 5,
     width: '100%',
-    paddingLeft: '30%',
+    paddingLeft: '18%',
   },
   button: {
     backgroundColor: '#4caf50',
@@ -56,20 +56,115 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: 10,
   },
+  list: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  item: {
+    backgroundColor: 'red',
+    margin: 3,
+    width: 100,
+  },
 });
 
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
+import {Avatar, ListItem} from 'react-native-elements';
+import {search, userID} from '../lib/utils';
 
 class Home extends Component {
-  state = {};
+  state = {
+    count: '',
+    items: [],
+  };
+
+  UNSAFE_componentWillMount() {
+    search({userID: userID()})
+      .then(response => {
+        x = response.length;
+        this.setState({
+          count: x,
+        });
+        console.log('x here', x, this.state);
+      })
+      .catch(err => {
+        console.log(err);
+        Alert.alert(
+          'ERROR',
+          'Please try again. If the problem persists contact an administrator.',
+          [{text: 'OK'}],
+        );
+      });
+  }
+  getCount(count) {
+    if (count != '') {
+      return count;
+    }
+
+    return 0;
+  }
   render() {
+    console.log('rendering');
+
     return (
       <View style={styles.center}>
         <ScrollView style={styles.scroll}>
           <View style={styles.buttonGroup}>
-            <Text style={styles.title}>BE A HERO</Text>
+            <View style={{alignContent: 'center', paddingTop: 10}}>
+              <ListItem
+                leftAvatar={{
+                  source: {
+                    uri:
+                      'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                  },
+                  size: 'large',
+                }}
+                title={'emmy'}
+              />
+            </View>
+            <View>
+              <FlatList
+                data={[
+                  {
+                    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+                    title: {
+                      name: 'services',
+                      value: this.getCount(this.state.count),
+                    },
+                  },
+                  {
+                    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+                    title: {name: 'taken', value: this.state.count},
+                  },
+                  {
+                    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+                    title: {name: 'volunteered', value: this.state.count},
+                  },
+                ]}
+                renderItem={({item}) => (
+                  <View style={{margin: 5}}>
+                    <Text
+                      style={{
+                        margin: 10,
+                        textAlign: 'center',
+                      }}>
+                      {item.title.name}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 40,
+                        margin: 10,
+                        textAlign: 'center',
+                      }}>
+                      {item.title.value}
+                    </Text>
+                  </View>
+                )}
+                keyExtractor={item => item.id}
+                numColumns={4}
+              />
+            </View>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('donate')}
               style={styles.button}>
@@ -85,11 +180,6 @@ class Home extends Component {
               style={styles.button}>
               <Text style={styles.subtitle}>volunteer</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('map')}
-              style={styles.button}>
-              <Text style={styles.subtitle}>Possible gatherings</Text>
-            </TouchableOpacity> */}
           </View>
         </ScrollView>
       </View>

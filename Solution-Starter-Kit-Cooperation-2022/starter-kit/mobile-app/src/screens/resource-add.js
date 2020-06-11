@@ -92,6 +92,8 @@ const AddResource = function({navigation}) {
     location: '',
     contact: '',
     quantity: '1',
+    NGO: '',
+    orderPlaced: 'false',
   };
   const [item, setItem] = React.useState(clearItem);
   const [useLocation, setUseLocation] = React.useState(true);
@@ -192,6 +194,21 @@ const AddResource = function({navigation}) {
         enablesReturnKeyAutomatically={true}
         placeholder="user@domain.com"
       />
+      <View style={styles.typeArea}>
+        <Text style={styles.label}>NGO</Text>
+        <PickerSelect
+          style={{inputIOS: styles.selector}}
+          value={item.NGO}
+          onValueChange={t => setItem({...item, NGO: t})}
+          items={[
+            {label: 'NGO1', value: 'NGO1'},
+            {label: 'NGO2', value: 'NGO2'},
+            {label: 'NGO3', value: 'NGO3'},
+            {label: 'NGO4', value: 'NGO4'},
+          ]}
+        />
+      </View>
+
       <Text style={styles.label}>Description</Text>
       <TextInput
         style={styles.textInput}

@@ -146,9 +146,9 @@ app.get("/api/resource", (req, res) => {
   const type = req.query.type;
   const name = req.query.name;
   const userID = req.query.userID;
-  const orderPlaced = req.query.orderPlaced;
+  // const orderPlaced = req.query.orderPlaced;
   cloudant
-    .find(type, name, userID, orderPlaced)
+    .find(type, name, userID)
     .then((data) => {
       if (data.statusCode != 200) {
         res.sendStatus(data.statusCode);
@@ -299,6 +299,7 @@ app.patch("/api/resource/:id", (req, res) => {
   const location = req.body.location || "";
   const contact = req.body.contact || "";
   const NGO = req.body.NGO || "";
+  const orderPlaced = req.body.orderPlaced || "";
 
   cloudant
     .update(
@@ -310,7 +311,8 @@ app.patch("/api/resource/:id", (req, res) => {
       location,
       contact,
       userID,
-      NGO
+      NGO,
+      orderPlaced
     )
     .then((data) => {
       if (data.statusCode != 200) {
@@ -321,7 +323,6 @@ app.patch("/api/resource/:id", (req, res) => {
     })
     .catch((err) => handleError(res, err));
 });
-
 /**
  * Delete a resource
  */

@@ -1,20 +1,3 @@
-// import React, {Component} from 'react';
-// import {View, Text, Alert, Button} from 'react-native';
-
-// class Donate extends Component {
-//   state = {};
-//   render() {
-//     return (
-//       <View>
-//         <Text>Donate</Text>
-//         <Button title="send" />
-//       </View>
-//     );
-//   }
-// }
-
-// export default Donate;
-
 import React from 'react';
 import {
   StyleSheet,
@@ -50,6 +33,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'IBMPlexSans-Medium',
   },
+  ngoItem: {
+    fontSize: 15,
+    fontFamily: 'IBMPlexSans-Medium',
+  },
   itemDescription: {
     fontSize: 14,
     fontFamily: 'IBMPlexSans-Medium',
@@ -61,6 +48,7 @@ const styles = StyleSheet.create({
     color: 'gray',
   },
   emptyListView: {
+    paddingTop: 300,
     backgroundColor: '#FFFFFF',
     flex: 1,
     alignItems: 'center',
@@ -109,6 +97,7 @@ const MyResources = function({navigation}) {
   }, []);
 
   const Item = props => {
+    console.log('ITEMS ', props);
     return (
       <View>
         <TouchableOpacity
@@ -120,12 +109,16 @@ const MyResources = function({navigation}) {
             <Text style={styles.itemName}>{props.name}</Text>
             <Text style={styles.itemQuantity}> ( {props.quantity} ) </Text>
           </View>
+          <View style={styles.itemView}>
+            <Text style={styles.ngoItem}>Provided By, {props.NGO}</Text>
+          </View>
           <Text style={styles.itemDescription}>{props.description}</Text>
         </TouchableOpacity>
       </View>
     );
   };
   if (items.length > 0) {
+    console.log('length', items.length);
     return (
       <ScrollView>
         <FlatList
@@ -147,7 +140,7 @@ const MyResources = function({navigation}) {
     return (
       <View style={styles.emptyListView}>
         <Text style={styles.emptyListText}>
-          You currently have no donations listed
+          You currently have no services listed
         </Text>
         <TouchableOpacity
           style={styles.buttonGroup}
