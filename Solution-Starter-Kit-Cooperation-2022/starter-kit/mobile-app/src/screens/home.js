@@ -191,7 +191,9 @@ class Home extends Component {
               <Text style={styles.subtitle}>Take service</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('volunteer')}
+              onPress={() =>
+                this.props.navigation.navigate('registerAsvolunteer')
+              }
               style={styles.button}>
               <Text style={styles.subtitle}>volunteer</Text>
             </TouchableOpacity>

@@ -128,7 +128,11 @@ const SearchResources = function({route, navigation}) {
     listOfbuyerId = props.orderPlaced['listOfbuyerId'] || {'': ''};
     userIdForOrder = props.orderPlaced.userID;
     console.log('orderplaced', listOfbuyerId[userIdForOrder], userIdForOrder);
-    console.log('accepted', props.orderPlaced.is_accepted);
+    console.log(
+      'accepted',
+      props.orderPlaced.orderPlaced,
+      props.orderPlaced.is_accepted,
+    );
     if (
       props.orderPlaced.is_accepted == 'true' &&
       listOfbuyerId[userIdForOrder]
@@ -145,7 +149,7 @@ const SearchResources = function({route, navigation}) {
               <TouchableOpacity
                 onPress={() => {
                   console.log('clicked ');
-                  navigation.navigate('order confirmation');
+                  navigation.navigate('orderConfirmation');
                 }}>
                 <Accept name={PropData} />
               </TouchableOpacity>

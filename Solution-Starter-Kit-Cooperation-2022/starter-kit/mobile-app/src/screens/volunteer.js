@@ -201,7 +201,7 @@ class Volunteer extends Component {
     console.log('rendering');
     return (
       <View style={styles.outerView}>
-        <Text style={styles.button}>Accept any order to deliver</Text>
+        <Text style={styles.button}>Requests</Text>
         <FlatList
           style={styles.flatListView}
           data={this.state.data}
