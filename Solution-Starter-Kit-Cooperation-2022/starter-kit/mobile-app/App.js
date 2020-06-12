@@ -22,6 +22,7 @@ import OrderPending from './src/screens/orderPending';
 import ShowVolunteers from './src/screens/showVolunteers';
 import PendingRequests from './src/screens/pendingRequests';
 import CompletedRequests from './src/screens/completedRequests';
+import SignUpAsVol from './src/screens/registerAsvolunteer.js';
 
 const screens = {
   entryLoginPage: {
@@ -106,6 +107,13 @@ const screens = {
     screen: Volunteer,
     navigationOptions: {
       title: 'Volunteer',
+      headerStyle: {backgroundColor: '#eee'},
+    },
+  },
+  registerAsvolunteer: {
+    screen: SignUpAsVol,
+    navigationOptions: {
+      title: 'Become a Volunteer',
       headerStyle: {backgroundColor: '#eee'},
     },
   },

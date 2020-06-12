@@ -114,6 +114,7 @@ class Volunteer extends Component {
 
     update(payload)
       .then(() => {
+        this.UNSAFE_componentWillMount();
         // Alert.alert('Done', 'Your order has been updated.', [{text: 'OK'}]);
         // navigation.navigate('order pending');
       })
@@ -201,7 +202,7 @@ class Volunteer extends Component {
     console.log('rendering');
     return (
       <View style={styles.outerView}>
-        <Text style={styles.button}>Accept any order to deliver</Text>
+        <Text style={styles.button}>Requests</Text>
         <FlatList
           style={styles.flatListView}
           data={this.state.data}

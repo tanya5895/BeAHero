@@ -92,43 +92,78 @@ const styles = StyleSheet.create({
   },
 });
 
-const updateItem = (orderItem, navigation) => {
-  console.log('accepted', orderItem['listOfbuyerId']);
-  var listofBuyers = {};
-  if (orderItem['listOfbuyerId'] != undefined) {
-    listofBuyers = orderItem['listOfbuyerId'];
-  }
-  listofBuyers[orderItem['userID']] = true;
-  console.log('after', listofBuyers);
+// const updateItem = (orderItem, navigation) => {
+//   console.log('accepted', orderItem['listOfbuyerId']);
+//   var listofBuyers = {};
+//   if (orderItem['listOfbuyerId'] != undefined) {
+//     listofBuyers = orderItem['listOfbuyerId'];
+//   }
+//   listofBuyers[orderItem['userID']] = true;
+//   console.log('after', listofBuyers);
 
-  const payload = {
-    ...orderItem,
-    id: orderItem.id || orderItem['_id'],
-    orderPlaced: 'true',
-    listOfbuyerId: listofBuyers,
-  };
-  console.log('payload for update ', payload);
+//   const payload = {
+//     ...orderItem,
+//     id: orderItem.id || orderItem['_id'],
+//     orderPlaced: 'true',
+//     listOfbuyerId: listofBuyers,
+//   };
+//   console.log('payload for update ', payload);
 
-  update(payload)
-    .then(() => {
-      // Alert.alert('Done', 'Your order has been updated.', [{text: 'OK'}]);
-      navigation.navigate('order pending');
-    })
-    .catch(err => {
-      console.log(err);
-      Alert.alert('ERROR', err.message, [{text: 'OK'}]);
-    });
-};
+//   update(payload)
+//     .then(() => {
+
+//       // Alert.alert('Done', 'Your order has been updated.', [{text: 'OK'}]);
+//       navigation.navigate('order pending');
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       Alert.alert('ERROR', err.message, [{text: 'OK'}]);
+//     });
+// };
 const SearchResources = function({route, navigation}) {
   const [query, setQuery] = React.useState({type: 'Food', name: ''});
   const [items, setItems] = React.useState([]);
   const [info, setInfo] = React.useState('');
+
+  const updateItem = (orderItem, navigation) => {
+    console.log('accepted', orderItem['listOfbuyerId']);
+    var listofBuyers = {};
+    if (orderItem['listOfbuyerId'] != undefined) {
+      listofBuyers = orderItem['listOfbuyerId'];
+    }
+    listofBuyers[orderItem['userID']] = true;
+    console.log('after', listofBuyers);
+
+    const payload = {
+      ...orderItem,
+      id: orderItem.id || orderItem['_id'],
+      orderPlaced: 'true',
+      listOfbuyerId: listofBuyers,
+    };
+    console.log('payload for update ', payload);
+
+    update(payload)
+      .then(() => {
+        // Alert.alert('Done', 'Your order has been updated.', [{text: 'OK'}]);
+        searchItem();
+        navigation.navigate('order pending');
+      })
+      .catch(err => {
+        console.log(err);
+        Alert.alert('ERROR', err.message, [{text: 'OK'}]);
+      });
+  };
+
   const AcceptButton = props => {
     let data = '';
     listOfbuyerId = props.orderPlaced['listOfbuyerId'] || {'': ''};
     userIdForOrder = props.orderPlaced.userID;
     console.log('orderplaced', listOfbuyerId[userIdForOrder], userIdForOrder);
-    console.log('accepted', props.orderPlaced.is_accepted);
+    console.log(
+      'accepted',
+      props.orderPlaced.orderPlaced,
+      props.orderPlaced.is_accepted,
+    );
     if (
       props.orderPlaced.is_accepted == 'true' &&
       listOfbuyerId[userIdForOrder]
@@ -145,7 +180,7 @@ const SearchResources = function({route, navigation}) {
               <TouchableOpacity
                 onPress={() => {
                   console.log('clicked ');
-                  navigation.navigate('order confirmation');
+                  navigation.navigate('orderConfirmation');
                 }}>
                 <Accept name={PropData} />
               </TouchableOpacity>

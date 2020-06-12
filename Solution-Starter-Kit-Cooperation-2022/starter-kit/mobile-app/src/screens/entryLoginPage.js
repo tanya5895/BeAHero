@@ -7,7 +7,6 @@ import {
   TextInput,
   View,
 } from 'react-native';
-
 class EntryLoginPage extends Component {
   constructor(props) {
     super(props);
@@ -16,47 +15,46 @@ class EntryLoginPage extends Component {
   render() {
     return (
       <View style={styles.outerView}>
-        <View style={styles.splitView}>
-          <View style={styles.typeArea}>
-            <Text style={styles.label}>Id</Text>
-            <TextInput
-              style={styles.textInput}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="id"
-              blurOnSubmit={false}
-              keyboardType="email-address"
-            />
-          </View>
-          <View style={styles.typeArea}>
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              style={styles.textInput}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="password"
-              blurOnSubmit={false}
-              keyboardType="default"
-              secureTextEntry
-            />
-          </View>
-        </View>
+        {/* <View style={styles.splitView}> */}
+        {/* <View style={styles.typeArea}> */}
+        <Text style={styles.label}>Id</Text>
+        <TextInput
+          style={styles.textInput}
+          returnKeyType="send"
+          enablesReturnKeyAutomatically={true}
+          placeholder="id"
+          blurOnSubmit={false}
+          keyboardType="email-address"
+        />
+        {/* </View> */}
+        {/* <View style={styles.typeArea}> */}
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.textInput}
+          returnKeyType="send"
+          enablesReturnKeyAutomatically={true}
+          placeholder="password"
+          blurOnSubmit={false}
+          keyboardType="default"
+          secureTextEntry
+        />
+        {/* </View> */}
+        {/* </View> */}
         <View style={styles.splitView}>
           <View>
             <TouchableOpacity
+              // style={{border: 'bold'}}
               onPress={() => this.props.navigation.navigate('home')}>
-              <Text style={styles.button}>Login as User</Text>
+              <Text style={styles.buttonLogin}>Login as User </Text>
             </TouchableOpacity>
           </View>
-
           <View>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('ngoPage')}>
-              <Text style={styles.button}>Login as NGO</Text>
+              <Text style={styles.buttonLogin}>Login as NGO</Text>
             </TouchableOpacity>
           </View>
         </View>
-
         {/* <View style={styles.splitView}> */}
         {/* <View> */}
         <TouchableOpacity
@@ -64,13 +62,12 @@ class EntryLoginPage extends Component {
           <Text style={styles.button}>Register New User</Text>
         </TouchableOpacity>
         {/* </View> */}
-
         {/* <View> */}
         <TouchableOpacity
+          // style={{borderColor: 'blue'}}
           onPress={() => this.props.navigation.navigate('signUpAsNgo')}>
           <Text style={styles.button}>Register NGO</Text>
         </TouchableOpacity>
-
         <View style={styles.appName}>
           <Text style={styles.textCaption}>Be A Hero</Text>
           <Text>"Rejuvenating the humanity within"</Text>
@@ -79,7 +76,6 @@ class EntryLoginPage extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   outerView: {
     flex: 1,
@@ -111,7 +107,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontFamily: 'IBMPlexSans-Medium',
-    flex: 1,
+    // flex: 1,
     borderColor: '#D0E2FF',
     borderWidth: 2,
     padding: 14,
@@ -148,10 +144,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     // width: '40%',
   },
+  buttonLogin: {
+    // backgroundColor: '#4caf50',
+    color: 'dodgerblue',
+    fontFamily: 'IBMPlexSans-Medium',
+    fontSize: 16,
+    overflow: 'hidden',
+    padding: 12,
+    textAlign: 'center',
+    marginTop: 0,
+    borderRadius: 10,
+    // borderColor: 'blue',
+    // width: '40%',
+  },
   appName: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 100,
+    marginTop: 75,
   },
   textCaption: {
     fontSize: 50,
@@ -159,5 +168,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
 export default EntryLoginPage;
