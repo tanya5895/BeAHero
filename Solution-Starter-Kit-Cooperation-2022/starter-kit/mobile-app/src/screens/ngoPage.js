@@ -8,92 +8,81 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-class NgoPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      defaultRequests: '10',
-    };
-  }
-  render() {
-    return (
-      <ScrollView style={styles.outerView}>
-        <View style={styles.splitView}>
-          <View style={styles.quantityArea}>
-            <Text style={styles.label}>#Pending Requests</Text>
-            <TextInput
-              defaultValue={this.state.defaultRequests}
-              style={styles.textInput}
-              //   value={item.quantity}
-              //   onChangeText={t => setItem({...item, quantity: t})}
-              //   onSubmitEditing={sendItem}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              //   placeholder="e.g., 10"
-              keyboardType="numeric"
-            />
-          </View>
-
-          <View style={styles.quantityArea}>
-            <Text style={styles.label}>#Completed Requests</Text>
-            <TextInput
-              defaultValue={this.state.defaultRequests}
-              style={styles.textInput}
-              //   value={item.quantity}
-              //   onChangeText={t => setItem({...item, quantity: t})}
-              //   onSubmitEditing={sendItem}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              //   placeholder="e.g., 10"
-              keyboardType="numeric"
-            />
-          </View>
+function NgoPage({navigation}) {
+  let numb = 10;
+  return (
+    <ScrollView style={styles.outerView}>
+      <View style={styles.splitView}>
+        <View style={styles.quantityArea}>
+          <Text style={styles.label}>#Pending Requests</Text>
+          <TextInput
+            defaultValue={numb}
+            style={styles.textInput}
+            //   value={item.quantity}
+            //   onChangeText={t => setItem({...item, quantity: t})}
+            //   onSubmitEditing={sendItem}
+            returnKeyType="send"
+            enablesReturnKeyAutomatically={true}
+            //   placeholder="e.g., 10"
+            keyboardType="numeric"
+          />
         </View>
-        <Text style={styles.label}>#Volunteers Without Duty</Text>
-        <TextInput
-          style={styles.textInput}
-          //   value={item.description}
-          //   onChangeText={t => setItem({...item, description: t})}
-          //   onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="e.g., cans of tomatoes"
-          defaultValue={this.state.defaultRequests}
-        />
 
-        <TouchableOpacity
-        //  onPress={sendItem}
-        >
-          <Text style={styles.button}>Pending Requests</Text>
-        </TouchableOpacity>
+        <View style={styles.quantityArea}>
+          <Text style={styles.label}>#Completed Requests</Text>
+          <TextInput
+            defaultValue={numb}
+            style={styles.textInput}
+            //   value={item.quantity}
+            //   onChangeText={t => setItem({...item, quantity: t})}
+            //   onSubmitEditing={sendItem}
+            returnKeyType="send"
+            enablesReturnKeyAutomatically={true}
+            //   placeholder="e.g., 10"
+            keyboardType="numeric"
+          />
+        </View>
+      </View>
+      <Text style={styles.label}>#Volunteers Without Duty</Text>
+      <TextInput
+        style={styles.textInput}
+        //   value={item.description}
+        //   onChangeText={t => setItem({...item, description: t})}
+        //   onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="Number of volunteers"
+        defaultValue={numb}
+      />
 
-        <TouchableOpacity
-        //  onPress={sendItem}
-        >
-          <Text style={styles.button}>Completed Requests</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('pendingRequests')}>
+        <Text style={styles.button}>Pending Requests</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-        //  onPress={sendItem}
-        >
-          <Text style={styles.button}>Volunteers</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('completedRequests')}>
+        <Text style={styles.button}>Completed Requests</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-        //  onPress={sendItem}
-        >
-          <Text style={styles.button}>Issues</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('showVolunteers')}>
+        <Text style={styles.button}>Volunteers</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-        //  onPress={sendItem}
-        >
-          <Text style={styles.buttonContact}>Contact Us</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    );
-  }
+      <TouchableOpacity
+      //  onPress={sendItem}
+      >
+        <Text style={styles.button}>Issues</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+      //  onPress={sendItem}
+      >
+        <Text style={styles.buttonContact}>Contact Us</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
 }
+
 const styles = StyleSheet.create({
   outerView: {
     flex: 1,

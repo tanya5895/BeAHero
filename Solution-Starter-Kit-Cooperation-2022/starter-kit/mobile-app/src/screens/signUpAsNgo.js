@@ -10,123 +10,116 @@ import {
 import PickerSelect from 'react-native-picker-select';
 import RNPickerSelect from 'react-native-picker-select';
 
-class SignUpAsNGO extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <ScrollView style={styles.outerView}>
-        <View style={styles.splitView}>
-          <View style={styles.typeArea}>
-            <Text style={styles.label}>Name</Text>
-            <TextInput
-              style={styles.textInput}
-              // value={item.name}
-              // onChangeText={t => setItem({...item, name: t})}
-              // onSubmitEditing={sendItem}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="Name"
-              blurOnSubmit={false}
-            />
-          </View>
-
-          <View style={styles.quantityArea}>
-            <Text style={styles.label}>#Volunteers</Text>
-            <TextInput
-              style={styles.textInput}
-              // value={item.name}
-              // onChangeText={t => setItem({...item, name: t})}
-              // onSubmitEditing={sendItem}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="Registration ID"
-              blurOnSubmit={false}
-            />
-          </View>
+function SignUpAsNGO({navigation}) {
+  return (
+    <ScrollView style={styles.outerView}>
+      <View style={styles.splitView}>
+        <View style={styles.typeArea}>
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.textInput}
+            // value={item.name}
+            // onChangeText={t => setItem({...item, name: t})}
+            // onSubmitEditing={sendItem}
+            returnKeyType="send"
+            enablesReturnKeyAutomatically={true}
+            placeholder="Name"
+            blurOnSubmit={false}
+          />
         </View>
 
-        <Text style={styles.label}>Registration ID</Text>
-        <TextInput
-          style={styles.textInput}
-          // value={item.contact}
-          // onChangeText={t => setItem({...item, contact: t})}
-          // onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="Registration ID"
-        />
+        <View style={styles.quantityArea}>
+          <Text style={styles.label}>#Volunteers</Text>
+          <TextInput
+            style={styles.textInput}
+            // value={item.name}
+            // onChangeText={t => setItem({...item, name: t})}
+            // onSubmitEditing={sendItem}
+            returnKeyType="send"
+            enablesReturnKeyAutomatically={true}
+            placeholder="Registration ID"
+            blurOnSubmit={false}
+          />
+        </View>
+      </View>
 
-        <Text style={styles.label}>EmailId</Text>
-        <TextInput
-          style={styles.textInput}
-          // value={item.contact}
-          // onChangeText={t => setItem({...item, contact: t})}
-          // onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="name@domain.com"
-        />
+      <Text style={styles.label}>Registration ID</Text>
+      <TextInput
+        style={styles.textInput}
+        // value={item.contact}
+        // onChangeText={t => setItem({...item, contact: t})}
+        // onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="Registration ID"
+      />
 
-        <Text style={styles.label}>Contact Number</Text>
-        <TextInput
-          style={styles.textInput}
-          // value={item.contact}
-          // onChangeText={t => setItem({...item, contact: t})}
-          // onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="9130058565"
-        />
+      <Text style={styles.label}>EmailId</Text>
+      <TextInput
+        style={styles.textInput}
+        // value={item.contact}
+        // onChangeText={t => setItem({...item, contact: t})}
+        // onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="name@domain.com"
+      />
 
-        <Text style={styles.label}>Area of Service</Text>
-        <RNPickerSelect
-          style={{inputIOS: styles.selector}}
-          onValueChange={value => console.log(value)}
-          items={[
-            {label: 'Food', value: 'food'},
-            {label: 'Clothes', value: 'clothes'},
-            {label: 'Electronics', value: 'electronics'},
-            {label: 'Help', value: 'help'},
-            {label: 'Others', value: 'others'},
-          ]}
-        />
+      <Text style={styles.label}>Contact Number</Text>
+      <TextInput
+        style={styles.textInput}
+        // value={item.contact}
+        // onChangeText={t => setItem({...item, contact: t})}
+        // onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="9130058565"
+      />
 
-        <Text style={styles.label}>Location of Service</Text>
-        <RNPickerSelect
-          style={{inputIOS: styles.selector}}
-          onValueChange={value => console.log(value)}
-          items={[
-            {label: 'Agra', value: 'agra'},
-            {label: 'Mumbai', value: 'mumbai'},
-            {label: 'Delhi', value: 'delhi'},
-            {label: 'Bangalore', value: 'blr'},
-            {label: 'Others', value: 'others'},
-          ]}
-        />
+      <Text style={styles.label}>Area of Service</Text>
+      <RNPickerSelect
+        style={{inputIOS: styles.selector}}
+        onValueChange={value => console.log(value)}
+        items={[
+          {label: 'Food', value: 'food'},
+          {label: 'Clothes', value: 'clothes'},
+          {label: 'Electronics', value: 'electronics'},
+          {label: 'Help', value: 'help'},
+          {label: 'Others', value: 'others'},
+        ]}
+      />
 
-        {/* <PickerSelect 
-          style={{inputIOS: styles.selector}}
-        //   value={item.type}
-          //   onValueChange={t => setItem({...item, type: t})}
-          items={[
-            {label: 'Food', value: 'Food'},
-            {label: 'Clothes', value: 'Clothes'},
-            {label: 'Electronic Parts', value: 'Electronic Parts'},
-            {label: 'Other', value: 'Other'},
-          ]}
-        /> */}
-        <TouchableOpacity
-        //  onPress={sendItem}
-        >
-          <Text style={styles.button}>Register</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    );
-  }
+      <Text style={styles.label}>Location of Service</Text>
+      <RNPickerSelect
+        style={{inputIOS: styles.selector}}
+        onValueChange={value => console.log(value)}
+        items={[
+          {label: 'Agra', value: 'agra'},
+          {label: 'Mumbai', value: 'mumbai'},
+          {label: 'Delhi', value: 'delhi'},
+          {label: 'Bangalore', value: 'blr'},
+          {label: 'Others', value: 'others'},
+        ]}
+      />
+
+      {/* <PickerSelect 
+        style={{inputIOS: styles.selector}}
+      //   value={item.type}
+        //   onValueChange={t => setItem({...item, type: t})}
+        items={[
+          {label: 'Food', value: 'Food'},
+          {label: 'Clothes', value: 'Clothes'},
+          {label: 'Electronic Parts', value: 'Electronic Parts'},
+          {label: 'Other', value: 'Other'},
+        ]}
+      /> */}
+      <TouchableOpacity onPress={() => navigation.navigate('entryLoginPage')}>
+        <Text style={styles.button}>Register</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
 }
+
 const styles = StyleSheet.create({
   outerView: {
     flex: 1,

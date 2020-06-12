@@ -9,99 +9,92 @@ import {
 import {TextInput} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-class SignUpAsUser extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <ScrollView style={styles.outerView}>
-        <View style={styles.splitView}>
-          <View style={styles.typeArea}>
-            <Text style={styles.label}>Name</Text>
-            <TextInput
-              style={styles.textInput}
-              // value={item.name}
-              // onChangeText={t => setItem({...item, name: t})}
-              // onSubmitEditing={sendItem}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="Name"
-              blurOnSubmit={false}
-            />
-          </View>
-
-          <View style={styles.typeArea}>
-            <Text style={styles.label}>Last Name</Text>
-            <TextInput
-              style={styles.textInput}
-              // value={item.name}
-              // onChangeText={t => setItem({...item, name: t})}
-              // onSubmitEditing={sendItem}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="Last Name"
-              blurOnSubmit={false}
-            />
-          </View>
+function SignUpAsUser({navigation}) {
+  return (
+    <ScrollView style={styles.outerView}>
+      <View style={styles.splitView}>
+        <View style={styles.typeArea}>
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.textInput}
+            // value={item.name}
+            // onChangeText={t => setItem({...item, name: t})}
+            // onSubmitEditing={sendItem}
+            returnKeyType="send"
+            enablesReturnKeyAutomatically={true}
+            placeholder="Name"
+            blurOnSubmit={false}
+          />
         </View>
 
-        <Text style={styles.label}>Contact Number</Text>
-        <TextInput
-          style={styles.textInput}
-          // value={item.contact}
-          // onChangeText={t => setItem({...item, contact: t})}
-          // onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="8130058564"
-        />
+        <View style={styles.typeArea}>
+          <Text style={styles.label}>Last Name</Text>
+          <TextInput
+            style={styles.textInput}
+            // value={item.name}
+            // onChangeText={t => setItem({...item, name: t})}
+            // onSubmitEditing={sendItem}
+            returnKeyType="send"
+            enablesReturnKeyAutomatically={true}
+            placeholder="Last Name"
+            blurOnSubmit={false}
+          />
+        </View>
+      </View>
 
-        <Text style={styles.label}>EmailId</Text>
-        <TextInput
-          style={styles.textInput}
-          // value={item.contact}
-          // onChangeText={t => setItem({...item, contact: t})}
-          // onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="name@domain.com"
-        />
+      <Text style={styles.label}>Contact Number</Text>
+      <TextInput
+        style={styles.textInput}
+        // value={item.contact}
+        // onChangeText={t => setItem({...item, contact: t})}
+        // onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="8130058564"
+      />
 
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          style={styles.textInput}
-          // value={item.contact}
-          // onChangeText={t => setItem({...item, contact: t})}
-          // onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="password"
-          secureTextEntry
-        />
+      <Text style={styles.label}>EmailId</Text>
+      <TextInput
+        style={styles.textInput}
+        // value={item.contact}
+        // onChangeText={t => setItem({...item, contact: t})}
+        // onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="name@domain.com"
+      />
 
-        <Text style={styles.label}>Confirm Password</Text>
-        <TextInput
-          style={styles.textInput}
-          // value={item.contact}
-          // onChangeText={t => setItem({...item, contact: t})}
-          // onSubmitEditing={sendItem}
-          returnKeyType="send"
-          enablesReturnKeyAutomatically={true}
-          placeholder="confirm password"
-          secureTextEntry
-        />
+      <Text style={styles.label}>Password</Text>
+      <TextInput
+        style={styles.textInput}
+        // value={item.contact}
+        // onChangeText={t => setItem({...item, contact: t})}
+        // onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="password"
+        secureTextEntry
+      />
 
-        <TouchableOpacity
-        //  onPress={sendItem}
-        >
-          <Text style={styles.button}>Register</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    );
-  }
+      <Text style={styles.label}>Confirm Password</Text>
+      <TextInput
+        style={styles.textInput}
+        // value={item.contact}
+        // onChangeText={t => setItem({...item, contact: t})}
+        // onSubmitEditing={sendItem}
+        returnKeyType="send"
+        enablesReturnKeyAutomatically={true}
+        placeholder="confirm password"
+        secureTextEntry
+      />
+
+      <TouchableOpacity onPress={() => navigation.navigate('entryLoginPage')}>
+        <Text style={styles.button}>Register</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
 }
+
 const styles = StyleSheet.create({
   outerView: {
     flex: 1,

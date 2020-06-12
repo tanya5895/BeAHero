@@ -17,6 +17,11 @@ import EntryLoginPage from './src/screens/entryLoginPage';
 import NgoPage from './src/screens/ngoPage';
 import SignUpAsUser from './src/screens/signUpAsUser';
 import SignUpAsNGO from './src/screens/signUpAsNgo';
+import OrderConfirmation from './src/screens/orderConfirmation';
+import OrderPending from './src/screens/orderPending';
+import ShowVolunteers from './src/screens/showVolunteers';
+import PendingRequests from './src/screens/pendingRequests';
+import CompletedRequests from './src/screens/completedRequests';
 
 const screens = {
   entryLoginPage: {
@@ -42,6 +47,25 @@ const screens = {
       title: 'User Sign Up',
     },
   },
+  showVolunteers: {
+    screen: ShowVolunteers,
+    navigationOptions: {
+      title: 'Fighters',
+    },
+  },
+  pendingRequests: {
+    screen: PendingRequests,
+    navigationOptions: {
+      title: 'To-Do List',
+    },
+  },
+
+  completedRequests: {
+    screen: CompletedRequests,
+    navigationOptions: {
+      title: '___ Humanity Points ',
+    },
+  },
 
   signUpAsNgo: {
     screen: SignUpAsNGO,
@@ -64,7 +88,7 @@ const screens = {
       headerStyle: {backgroundColor: '#eee'},
     },
   },
-  'order confirmation': {
+  orderConfirmation: {
     screen: OrderConfirmation,
     navigationOptions: {
       title: 'Order Confirmation',

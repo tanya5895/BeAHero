@@ -17,69 +17,63 @@ class EntryLoginPage extends Component {
     return (
       <View style={styles.outerView}>
         <View style={styles.splitView}>
-          <Text style={styles.label}>Id</Text>
-          <TextInput
-            style={styles.textInput}
-            // value={item.name}
-            // onChangeText={t => setItem({...item, name: t})}
-            // onSubmitEditing={sendItem}
-            returnKeyType="send"
-            enablesReturnKeyAutomatically={true}
-            placeholder="id"
-            blurOnSubmit={false}
-          />
-
-          <Text style={styles.label}>Password</Text>
-          <TextInput
-            style={styles.textInput}
-            // value={item.name}
-            // onChangeText={t => setItem({...item, name: t})}
-            // onSubmitEditing={sendItem}
-            returnKeyType="send"
-            enablesReturnKeyAutomatically={true}
-            placeholder="password"
-            blurOnSubmit={false}
-            secureTextEntry
-          />
+          <View style={styles.typeArea}>
+            <Text style={styles.label}>Id</Text>
+            <TextInput
+              style={styles.textInput}
+              returnKeyType="send"
+              enablesReturnKeyAutomatically={true}
+              placeholder="id"
+              blurOnSubmit={false}
+              keyboardType="email-address"
+            />
+          </View>
+          <View style={styles.typeArea}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={styles.textInput}
+              returnKeyType="send"
+              enablesReturnKeyAutomatically={true}
+              placeholder="password"
+              blurOnSubmit={false}
+              keyboardType="default"
+              secureTextEntry
+            />
+          </View>
         </View>
         <View style={styles.splitView}>
           <View>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('home')}
-              // onPress={sendItem}
-            >
+              onPress={() => this.props.navigation.navigate('home')}>
               <Text style={styles.button}>Login as User</Text>
             </TouchableOpacity>
           </View>
 
           <View>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('ngoPage')}
-              // onPress={sendItem}
-            >
+              onPress={() => this.props.navigation.navigate('ngoPage')}>
               <Text style={styles.button}>Login as NGO</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={styles.splitView}>
-          <View>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('signUpAsUser')}
-              // onPress={sendItem}
-            >
-              <Text style={styles.button}>Register New User</Text>
-            </TouchableOpacity>
-          </View>
+        {/* <View style={styles.splitView}> */}
+        {/* <View> */}
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('signUpAsUser')}>
+          <Text style={styles.button}>Register New User</Text>
+        </TouchableOpacity>
+        {/* </View> */}
 
-          <View>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('signUpAsNgo')}
-              // onPress={sendItem}
-            >
-              <Text style={styles.button}>Register NGO</Text>
-            </TouchableOpacity>
-          </View>
+        {/* <View> */}
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('signUpAsNgo')}>
+          <Text style={styles.button}>Register NGO</Text>
+        </TouchableOpacity>
+
+        <View style={styles.appName}>
+          <Text style={styles.textCaption}>Be A Hero</Text>
+          <Text>"Rejuvenating the humanity within"</Text>
         </View>
       </View>
     );
@@ -89,7 +83,6 @@ class EntryLoginPage extends Component {
 const styles = StyleSheet.create({
   outerView: {
     flex: 1,
-    // justifyContent: 'center',
     padding: 62,
     backgroundColor: '#FFF',
   },
@@ -153,6 +146,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
     borderRadius: 10,
+    // width: '40%',
+  },
+  appName: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 100,
+  },
+  textCaption: {
+    fontSize: 50,
+    fontFamily: 'IBMPlexSans-Medium',
+    fontWeight: 'bold',
   },
 });
 
