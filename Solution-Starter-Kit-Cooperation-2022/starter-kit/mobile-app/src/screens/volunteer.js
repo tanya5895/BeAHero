@@ -114,6 +114,7 @@ class Volunteer extends Component {
 
     update(payload)
       .then(() => {
+        this.UNSAFE_componentWillMount();
         // Alert.alert('Done', 'Your order has been updated.', [{text: 'OK'}]);
         // navigation.navigate('order pending');
       })

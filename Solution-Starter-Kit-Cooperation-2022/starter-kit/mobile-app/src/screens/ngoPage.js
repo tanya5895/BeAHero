@@ -15,7 +15,7 @@ function NgoPage({navigation}) {
       <View style={styles.splitView}>
         <View style={styles.quantityArea}>
           <Text style={styles.label}>#Pending Requests</Text>
-          <TextInput
+          {/* <TextInput
             defaultValue={numb}
             style={styles.textInput}
             //   value={item.quantity}
@@ -25,36 +25,19 @@ function NgoPage({navigation}) {
             enablesReturnKeyAutomatically={true}
             //   placeholder="e.g., 10"
             keyboardType="numeric"
-          />
+          /> */}
+          <Text style={{fontSize: 40}}>10</Text>
         </View>
 
         <View style={styles.quantityArea}>
           <Text style={styles.label}>#Completed Requests</Text>
-          <TextInput
-            defaultValue={numb}
-            style={styles.textInput}
-            //   value={item.quantity}
-            //   onChangeText={t => setItem({...item, quantity: t})}
-            //   onSubmitEditing={sendItem}
-            returnKeyType="send"
-            enablesReturnKeyAutomatically={true}
-            //   placeholder="e.g., 10"
-            keyboardType="numeric"
-          />
+          <Text style={{fontSize: 40}}>5</Text>
         </View>
       </View>
-      <Text style={styles.label}>#Volunteers Without Duty</Text>
-      <TextInput
-        style={styles.textInput}
-        //   value={item.description}
-        //   onChangeText={t => setItem({...item, description: t})}
-        //   onSubmitEditing={sendItem}
-        returnKeyType="send"
-        enablesReturnKeyAutomatically={true}
-        placeholder="Number of volunteers"
-        defaultValue={numb}
-      />
-
+      <View style={styles.quantityArea}>
+        <Text style={styles.label}>#Volunteers Available</Text>
+      </View>
+      <Text style={{fontSize: 40}}>5</Text>
       <TouchableOpacity onPress={() => navigation.navigate('pendingRequests')}>
         <Text style={styles.button}>Pending Requests</Text>
       </TouchableOpacity>
@@ -68,16 +51,16 @@ function NgoPage({navigation}) {
         <Text style={styles.button}>Volunteers</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
       //  onPress={sendItem}
       >
         <Text style={styles.button}>Issues</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
       //  onPress={sendItem}
       >
-        <Text style={styles.buttonContact}>Contact Us</Text>
+        <Text style={styles.buttonLogin}>Contact Us</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -150,16 +133,29 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: 10,
   },
-  buttonContact: {
-    backgroundColor: '#4caf50',
-    color: '#FFFFFF',
+  // buttonContact: {
+  //   backgroundColor: '#4caf50',
+  //   color: '#FFFFFF',
+  //   fontFamily: 'IBMPlexSans-Medium',
+  //   fontSize: 16,
+  //   overflow: 'hidden',
+  //   padding: 12,
+  //   textAlign: 'center',
+  //   marginTop: 150,
+  //   borderRadius: 10,
+  // },
+  buttonLogin: {
+    // backgroundColor: '#4caf50',
+    color: 'dodgerblue',
     fontFamily: 'IBMPlexSans-Medium',
     fontSize: 16,
     overflow: 'hidden',
     padding: 12,
     textAlign: 'center',
-    marginTop: 150,
+    marginTop: 0,
     borderRadius: 10,
+    // borderColor: 'blue',
+    // width: '40%',
   },
 });
 
