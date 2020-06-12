@@ -132,7 +132,7 @@ class Home extends Component {
                   },
                   size: 'large',
                 }}
-                title={'emmy'}
+                title={'Jessica'}
               />
             </View>
             <View>
@@ -141,18 +141,18 @@ class Home extends Component {
                   {
                     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
                     title: {
-                      name: 'services',
+                      name: 'Offered',
                       value: this.getCount(this.state.count),
                     },
                   },
                   {
                     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-                    title: {name: 'taken', value: this.state.takenCount},
+                    title: {name: 'Received', value: this.state.takenCount},
                   },
                   {
                     id: '58694a0f-3da1-471f-bd96-145571e29d72',
                     title: {
-                      name: 'volunteered',
+                      name: 'Volunteered',
                       value: this.state.volunteerCount,
                     },
                   },

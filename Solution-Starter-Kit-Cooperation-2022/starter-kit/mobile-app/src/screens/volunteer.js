@@ -9,9 +9,8 @@ import {
   Alert,
   Button,
 } from 'react-native';
-import {searchVolunteer,update} from '../lib/utils';
+import {searchVolunteer, update} from '../lib/utils';
 import Accept from '../screens/Accept-reject';
-
 
 const styles = StyleSheet.create({
   outerView: {
@@ -79,8 +78,6 @@ const styles = StyleSheet.create({
     color: 'gray',
   },
   button: {
-  
-    
     fontFamily: 'IBMPlexSans-Medium',
     fontSize: 16,
     overflow: 'hidden',
@@ -104,11 +101,9 @@ const styles = StyleSheet.create({
 class Volunteer extends Component {
   state = {
     count: '',
-    data: [
-      
-    ],
+    data: [],
   };
-   updateItem (orderItem){
+  updateItem(orderItem) {
     console.log('accepted', orderItem);
     const payload = {
       ...orderItem,
@@ -116,7 +111,7 @@ class Volunteer extends Component {
       is_accepted: 'true',
     };
     console.log('payload for update ', payload);
-  
+
     update(payload)
       .then(() => {
         // Alert.alert('Done', 'Your order has been updated.', [{text: 'OK'}]);
@@ -126,44 +121,40 @@ class Volunteer extends Component {
         console.log(err);
         Alert.alert('ERROR', err.message, [{text: 'OK'}]);
       });
-  };
-  
-  AcceptButton (props) {
+  }
+
+  AcceptButton(props) {
     let data = '';
     console.log('is_accepted', props);
-    let acceptPropData={};
-    if(props.is_accepted=='true'){
+    let acceptPropData = {};
+    if (props.is_accepted == 'true') {
       acceptPropData = {
         name: 'You accepted this order',
       };
-    }
-    else
-    {
+    } else {
       acceptPropData = {
         name: 'Accept',
       };
     }
-      
-    
+
     return (
       <View>
-              <TouchableOpacity 
-                onPress={() => {
-                  console.log('clicked ');
-                  this.updateItem(props);
-                }}>
-                <Accept name={acceptPropData} />
-              </TouchableOpacity>
-            </View>
+        <TouchableOpacity
+          onPress={() => {
+            console.log('clicked ');
+            this.updateItem(props);
+          }}>
+          <Accept name={acceptPropData} />
+        </TouchableOpacity>
+      </View>
       // <FlatList
       //   data={data}
       //   renderItem={({item}) => item.title}
       //   keyExtractor={item => item.id}
-       
+
       // />
     );
-  };
-
+  }
 
   Item(itemsValues) {
     console.log('props', itemsValues);
@@ -182,9 +173,7 @@ class Volunteer extends Component {
           </View>
           <Text style={styles.itemDescription}>{itemsValues.description}</Text>
         </TouchableOpacity>
-        <View>
-        {this.AcceptButton(itemsValues) }
-        </View>
+        <View>{this.AcceptButton(itemsValues)}</View>
       </View>
     );
   }
@@ -212,7 +201,7 @@ class Volunteer extends Component {
     console.log('rendering');
     return (
       <View style={styles.outerView}>
-          <Text style={styles.button}>Accept any order to deliver</Text>
+        <Text style={styles.button}>Accept any order to deliver</Text>
         <FlatList
           style={styles.flatListView}
           data={this.state.data}
