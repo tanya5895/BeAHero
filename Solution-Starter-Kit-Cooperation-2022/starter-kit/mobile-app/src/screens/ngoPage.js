@@ -68,11 +68,11 @@ function NgoPage({navigation}) {
         <Text style={styles.button}>Volunteers</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
       //  onPress={sendItem}
       >
         <Text style={styles.button}>Issues</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
       //  onPress={sendItem}

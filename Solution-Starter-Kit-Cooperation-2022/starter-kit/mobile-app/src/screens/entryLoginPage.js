@@ -44,15 +44,16 @@ class EntryLoginPage extends Component {
         <View style={styles.splitView}>
           <View>
             <TouchableOpacity
+              // style={{border: 'bold'}}
               onPress={() => this.props.navigation.navigate('home')}>
-              <Text style={styles.button}>Login as User</Text>
+              <Text style={styles.buttonLogin}>Login as User</Text>
             </TouchableOpacity>
           </View>
 
           <View>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('ngoPage')}>
-              <Text style={styles.button}>Login as NGO</Text>
+              <Text style={styles.buttonLogin}>Login as NGO</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -67,6 +68,7 @@ class EntryLoginPage extends Component {
 
         {/* <View> */}
         <TouchableOpacity
+          // style={{borderColor: 'blue'}}
           onPress={() => this.props.navigation.navigate('signUpAsNgo')}>
           <Text style={styles.button}>Register NGO</Text>
         </TouchableOpacity>
@@ -146,6 +148,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
     borderRadius: 10,
+    // width: '40%',
+  },
+  buttonLogin: {
+    // backgroundColor: '#4caf50',
+    color: 'dodgerblue',
+    fontFamily: 'IBMPlexSans-Medium',
+    fontSize: 16,
+    overflow: 'hidden',
+    padding: 12,
+    textAlign: 'center',
+    marginTop: 0,
+    borderRadius: 10,
+    // borderColor: 'blue',
     // width: '40%',
   },
   appName: {
