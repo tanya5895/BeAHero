@@ -16,31 +16,31 @@ class EntryLoginPage extends Component {
   render() {
     return (
       <View style={styles.outerView}>
-        <View style={styles.splitView}>
-          <View style={styles.typeArea}>
-            <Text style={styles.label}>Id</Text>
-            <TextInput
-              style={styles.textInput}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="id"
-              blurOnSubmit={false}
-              keyboardType="email-address"
-            />
-          </View>
-          <View style={styles.typeArea}>
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              style={styles.textInput}
-              returnKeyType="send"
-              enablesReturnKeyAutomatically={true}
-              placeholder="password"
-              blurOnSubmit={false}
-              keyboardType="default"
-              secureTextEntry
-            />
-          </View>
-        </View>
+        {/* <View style={styles.splitView}> */}
+        {/* <View style={styles.typeArea}> */}
+        <Text style={styles.label}>Id</Text>
+        <TextInput
+          style={styles.textInput}
+          returnKeyType="send"
+          enablesReturnKeyAutomatically={true}
+          placeholder="id"
+          blurOnSubmit={false}
+          keyboardType="email-address"
+        />
+        {/* </View> */}
+        {/* <View style={styles.typeArea}> */}
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.textInput}
+          returnKeyType="send"
+          enablesReturnKeyAutomatically={true}
+          placeholder="password"
+          blurOnSubmit={false}
+          keyboardType="default"
+          secureTextEntry
+        />
+        {/* </View> */}
+        {/* </View> */}
         <View style={styles.splitView}>
           <View>
             <TouchableOpacity
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   appName: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 100,
+    marginTop: 75,
   },
   textCaption: {
     fontSize: 50,

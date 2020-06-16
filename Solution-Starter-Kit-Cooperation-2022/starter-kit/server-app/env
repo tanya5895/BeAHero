@@ -1,0 +1,6 @@
+# Environment variables
+ASSISTANT_URL=https://api.eu-gb.assistant.watson.cloud.ibm.com
+ASSISTANT_ID=3eac5eb8-9bbe-410f-9ffc-ecc2251e3799
+ASSISTANT_IAM_APIKEY=KQCkQ0ySECMnAbm6421rHC6a6CvxXvBOBkeBPH-QY8lf
+CLOUDANT_ID=4f08ce80-05de-4b2f-912c-9c485f78130c-bluemix
+CLOUDANT_IAM_APIKEY=Xt_D3I92hxNXpFlL_xiIrrM4_KlxGtTHvCzJEfu7iknj
